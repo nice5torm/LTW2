@@ -1,37 +1,58 @@
 <?php
 include_once('../config/init.php');
 
-function createList($user, $title) {
+function createList($creator, $title) {
     global $conn;
 
     $stmt = $conn->prepare
     (
         'INSERT INTO toDoList 
-              (idUser,title) 
+              (creator,title) 
                 VALUES (?,?)'
     );
-    $stmt->execute(array($user, $title));
+    $stmt->execute(array($creator, $title));
 }
 
-function deleteList($user,$title){
+function deleteList($creator,$idList){
     global $conn;
 
     $stmt = $conn->prepare
     (
         'SELECT * FROM toDoList 
-     		WHERE idUser = ? AND title=?'
+     		WHERE creator = ? AND idList=?'
     );
-    $stmt->execute(array($user, $title));
+    $stmt->execute(array($creator, $idList));
 
     if ( $stmt->fetch() ){
         $stmt = $conn->prepare
         (
             'DELETE FROM toDoList 
-              WHERE idUser = ? AND title=?'
+              WHERE idList=?'
         );
-        $stmt->execute(array($user, $title));
+        $stmt->execute(array($idList));
+    }
+}
+
+function updateList($creator, $title, idList){
+    global $conn;
+
+    $stmt = $conn->prepare
+    (
+        'SELECT * FROM toDoList 
+     		WHERE creator = ? AND idList=?'
+    );
+    $stmt->execute(array($creator, $idList));
+
+    if ( $stmt->fetch() ){
+        $stmt = $conn->prepare
+        (
+            'UPDATE FROM toDoList 
+              SET title=? WHERE idList=?'
+        );
+        $stmt->execute(array( $title, $idList));
     }
     else{
-        echo "That List doesn't exist!";
+        createList($creator, $title);
     }
+
 }
