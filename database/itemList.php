@@ -1,42 +1,64 @@
 <?php
 include_once('../config/init.php');
 
-function createItem($idUser, $idList,$item, $done) {
+function createItem($user, $idList, $item ) {
     global $conn;
 
     $stmt = $conn->prepare
     (
-        'INSERT INTO itemList 
-              (idList,item) 
-                 VALUES (?, ?)'
+	'SELECT * FROM members WHERE  user=? AND idList=?
     );
+    $stmt->execute(array($user, $idList));
 
-    $stmt->execute(array($idList,$item));
+    if($stmt->fetch()){
+   	$stmt = $conn->prepare
+    	(
+        	'INSERT INTO itemList (idList,item) 
+               	  	VALUES (?, ?)'
+   	);
+  	$stmt->execute(array($idList, $item));
+
+    }    
 
 }
 
 
 
-function deleteItem($list,$item){
+function deleteItem($user,$idList,$item){
     global $conn;
 
     $stmt = $conn->prepare
     (
-        'SELECT * FROM toDoList 
-     		WHERE idList = ? AND item=?'
+	'SELECT * FROM members WHERE  user=? AND idList=?
     );
-    $stmt->execute(array($list, $item));
+    $stmt->execute(array($user, $idList));
 
-    if ( $stmt->fetch() ){
+    if($stmt->fetch()){    
         $stmt = $conn->prepare
         (
-            'DELETE FROM toDoList 
+            'DELETE FROM itemList
               WHERE idList = ? AND item=?'
         );
-        $stmt->execute(array($list, $item));
+        $stmt->execute(array($idList, $item));
     }
-    else{
-        echo "That item doesn't exist!";
+}
+
+function updateItem($user, $idList, $item){
+    global $conn;
+
+    $stmt = $conn->prepare
+    (
+	'SELECT * FROM members WHERE  user=? AND idList=?
+    );
+    $stmt->execute(array($user, $idList));
+
+    if($stmt->fetch()){    
+        $stmt = $conn->prepare
+        (
+            'UPDATE FROM itemList SET done=TRUE
+              WHERE idList = ? AND item=?'
+        );
+        $stmt->execute(array($idList, $item));
     }
 }
 
