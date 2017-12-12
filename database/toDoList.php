@@ -58,20 +58,20 @@ function createList($creator, $title) {
         'INSERT INTO toDoList (creator,title) VALUES (?,?)'
     );
     $stmt->execute(array($creator, $title));
+    $lastid = $conn->lastInsertId();
 
     $stmt = $conn->prepare
     (
         'SELECT idList FROM toDoList WHERE  creator=? AND title=?'
     );
     $stmt->execute(array($creator, $title));
-    $row=$stmt->fetch();
 
     $stmt = $conn->prepare
     (
         'INSERT INTO members (user,idList) VALUES (?,?)'
     );
-    $stmt->execute(array($creator, $row));
-    return $row;
+    $stmt->execute(array($creator, $lastid));
+    return $lastid;
 
 }
 
@@ -111,16 +111,12 @@ function updateList($creator, $title, $idList){
     );
     $stmt->execute(array($creator, $idList));
 
-    if ( $stmt->fetch() ){
-        $stmt = $conn->prepare
-        (
-            'UPDATE FROM toDoList 
-              SET title=? WHERE idList=?'
-        );
-        $stmt->execute(array( $title, $idList));
-    }
-    else{
-        createList($creator, $title);
-    }
+    $stmt = $conn->prepare
+    (
+        'UPDATE FROM toDoList SET title=? WHERE idList=?'
+    );
+    $stmt->execute(array( $title, $idList));
+
+
 
 }
