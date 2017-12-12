@@ -1,6 +1,5 @@
 <head>
     <script src="jquery-3.2.1.min.js"></script>
-    <script src="myScript.js"></script>
     <link rel="stylesheet" href="../css/style.css">
     <title>Welcome</title>
 </head>
