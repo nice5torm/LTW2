@@ -39,13 +39,13 @@
                 if($item['done'])
                 {
                     ?>
-                    <input type="checkbox" name="checkbox" value="Done" checked>Done<br>
+                    <input type="checkbox" name="checkbox" value="<?php echo $item['idItem']; ?>" checked>Done<br>
                     <?php
                 }
                 else
                 {
                      ?>
-                    <input type="checkbox" name="checkbox" value="Done">Done<br>
+                    <input type="checkbox" name="checkbox" value="<?php echo $item['idItem']; ?>">Done<br>
                      <?php
                 }
             ?>

@@ -7,7 +7,7 @@
     if($method == 'GET')
     {
         handleGet();
-    }
+}
     else if($method == 'POST')
     {
         handlePost();
