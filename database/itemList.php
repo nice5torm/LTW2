@@ -38,9 +38,9 @@ function deleteItem($item){
     $stmt = $conn->prepare
     (
         'DELETE FROM itemList
-                WHERE item=?'
+                WHERE idItem=?'
     );
-    $stmt->execute(array( $item));
+    $stmt->execute(array($item));
 
 }
 
@@ -49,9 +49,10 @@ function updateItem($item, $done){
 
         $stmt = $conn->prepare
         (
-            'UPDATE FROM itemList SET done=?
-              WHERE item=?'
+            'UPDATE itemList SET done=? WHERE idItem=?'
         );
-        $stmt->execute(array($item, $done));
+        $result = $stmt->execute(array($done, $item));
+
+        return $result;
 }
 

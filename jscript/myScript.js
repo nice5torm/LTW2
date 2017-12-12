@@ -7,12 +7,19 @@ $(document).ready()
             var idItem = $(this).val();
             var checked = this.checked;
 
-            alert(checked);
-
-            $.post('../api/itemList.php', {idItem : idItem , checked : checked}, function(response)
-            {
-                // Do something with the request
-            }, 'json');
+            $.ajax
+            (
+                {
+                    method: "POST",
+                    url: '../api/itemList.php',
+                    data: {idItem : idItem , checked : checked}
+                }
+            ).done(function(msg)
+                {
+                    console.log(msg);
+                }
+            )
+            ;
         }
     );
 }

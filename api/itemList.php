@@ -2,9 +2,9 @@
 
     include_once 'API_base.php';
 
-    function handleGet()
+    function handlePost()
     {
-        if(!isset($_GET['idItem']) || !isset($_GET['checked']))
+        if(!isset($_POST['idItem']) || !isset($_POST['checked']))
         {
             echo "Unset Property";
         }
@@ -12,9 +12,16 @@
         {
             include_once "../database/itemList.php";
 
-            $result = updateItem($_GET['idItem'], $_GET['checked']);
-
-            echo $result;
+            if($_POST['checked'] == "true")
+            {
+                updateItem($_POST['idItem'], true);
+                echo 'set to true';
+            }
+            else
+            {
+                updateItem($_POST['idItem'], false);
+                echo 'set to false';
+            }
         }
     }
 ?>
