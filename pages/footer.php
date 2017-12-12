@@ -4,4 +4,4 @@
     <p>Ltw 2017</p>
 </footer>
 
-<script src="myScript.js"></script>
+<script src="../jscript/myScript.js"></script>
