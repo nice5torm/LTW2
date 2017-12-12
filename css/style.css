@@ -1,5 +1,5 @@
-/*navegação*/
- nav {
+/*navegacao*/
+	 nav {
         overflow: hidden;
         background-color: skyblue;
         font-family: Arial;
@@ -121,17 +121,19 @@
     	font-family:  Arial;
     }
 
-    section input[type=submit]:hover {
-   	 box-shadow: 
-       	 	inset 0 1px rgba(255,255,255,0.2), 
-        	inset 0 20px 30px rgba(99,64,86,0.5);
-    }
+    section  input[type=submit]:hover {
+		box-shadow:
+				inset 0 1px rgba(255,255,255,0.2),
+				inset 0 20px 30px rgba(99,64,86,0.5);
+	}
 
-    /* compatibilidade com browsers*/
+	/* compatibilidade com browsers*/
     section input::-webkit-input-placeholder{
     color: rgba(37,21,26,0.5);
     text-shadow: 0 1px 0 rgba(255,255,255,0.15);
-}
+	}
+
+/*Base*/
         
     body {
         background: #e5e5e5;

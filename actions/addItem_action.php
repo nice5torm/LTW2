@@ -4,9 +4,9 @@ include_once('../config/init.php');
 
 global $conn;
 
-$idList = $_POST['submit'];
+$idList = $_POST['list'];
 $item= $_POST['item'];
 
 createItem($idList, $item);
 
-header("Location: ../pages/todoList.php?submit=".$_POST['submit']);
+header("Location: ../pages/todoList.php?list=".$_POST['list']);
