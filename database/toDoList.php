@@ -11,6 +11,13 @@ function createList($creator, $title) {
                 VALUES (?,?)'
     );
     $stmt->execute(array($creator, $title));
+    $stmt = $conn->prepare
+    (
+        'SELECT idList FROM toDoList WHERE  creator=? AND title=?'
+    );
+    $stmt->execute(array($creator, $title));
+    return $stmt->fetch();
+
 }
 
 function deleteList($creator,$idList){
@@ -29,11 +36,12 @@ function deleteList($creator,$idList){
             'DELETE FROM toDoList 
               WHERE idList=?'
         );
-        $stmt->execute(array($idList));
+        $result=$stmt->execute(array($idList));
     }
+    return $result;
 }
 
-function updateList($creator, $title, idList){
+function updateList($creator, $title, $idList){
     global $conn;
 
     $stmt = $conn->prepare

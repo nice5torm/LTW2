@@ -6,7 +6,7 @@ function createItem($user, $idList, $item ) {
 
     $stmt = $conn->prepare
     (
-	'SELECT * FROM members WHERE  user=? AND idList=?
+	'SELECT * FROM members WHERE  user=? AND idList=?'
     );
     $stmt->execute(array($user, $idList));
 
@@ -22,14 +22,12 @@ function createItem($user, $idList, $item ) {
 
 }
 
-
-
 function deleteItem($user,$idList,$item){
     global $conn;
 
     $stmt = $conn->prepare
     (
-	'SELECT * FROM members WHERE  user=? AND idList=?
+	'SELECT * FROM members WHERE  user=? AND idList=?'
     );
     $stmt->execute(array($user, $idList));
 
@@ -48,7 +46,7 @@ function updateItem($user, $idList, $item){
 
     $stmt = $conn->prepare
     (
-	'SELECT * FROM members WHERE  user=? AND idList=?
+	'SELECT * FROM members WHERE  user=? AND idList=?'
     );
     $stmt->execute(array($user, $idList));
 

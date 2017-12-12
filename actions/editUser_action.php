@@ -9,6 +9,6 @@
     $country = $_POST['country'];
     $email = $_POST['email'];
 
-    $result = editUser($username, $password, $country, $email);
+    editUser($username, $password, $country, $email);
 
     header("Location: ../pages/home.php");
