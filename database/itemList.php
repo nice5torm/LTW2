@@ -44,14 +44,14 @@ function deleteItem($item){
 
 }
 
-function updateItem( $idList, $item){
+function updateItem($item, $done){
     global $conn;
 
         $stmt = $conn->prepare
         (
-            'UPDATE FROM itemList SET done=TRUE
-              WHERE idList = ? AND item=?'
+            'UPDATE FROM itemList SET done=?
+              WHERE item=?'
         );
-        $stmt->execute(array($idList, $item));
+        $stmt->execute(array($item, $done));
 }
 
