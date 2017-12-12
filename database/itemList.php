@@ -1,7 +1,26 @@
 <?php
 include_once('../config/init.php');
 
-function createItem($user, $idList, $item ) {
+function getItemsFromList($idList)
+{
+    global $conn;
+
+    $stmt = $conn->prepare
+    (
+        'SELECT * FROM itemList WHERE idList=?'
+    );
+    $stmt->execute(array($idList));
+
+    $results = array();
+    while($row = $stmt->fetch())
+    {
+        array_push($results, $row);
+    }
+    return $results;
+}
+
+function createItem($user, $idList, $item )
+{
     global $conn;
 
     $stmt = $conn->prepare
@@ -18,8 +37,7 @@ function createItem($user, $idList, $item ) {
    	);
   	$stmt->execute(array($idList, $item));
 
-    }    
-
+    }
 }
 
 function deleteItem($user,$idList,$item){
@@ -31,7 +49,7 @@ function deleteItem($user,$idList,$item){
     );
     $stmt->execute(array($user, $idList));
 
-    if($stmt->fetch()){    
+    if($stmt->fetch()){
         $stmt = $conn->prepare
         (
             'DELETE FROM itemList

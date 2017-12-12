@@ -1,14 +1,28 @@
 <?php
-    include_once('../database/user.php');
+
     include_once('../config/init.php');
+    include_once('../database/user.php');
 
-    global $conn;
+    if(unsetOrEmpty($_SESSION['username']) || !unsetOrEmpty($_POST['password']) || !unsetOrEmpty($_POST['country']) || !unsetOrEmpty($_POST['email']))
+    {
+        $_SESSION['Edit_Error'] = "Some field is unset";
 
-    $username = $_SESSION['username'];
-    $password = $_POST['password'];
-    $country = $_POST['country'];
-    $email = $_POST['email'];
+        header("Location: ../pages/editUser.php");
+    }
+    else
+    {
+        $username = $_SESSION['username'];
+        $password = $_POST['password'];
+        $country = $_POST['country'];
+        $email = $_POST['email'];
 
-    editUser($username, $password, $country, $email);
+        editUser($username, $password, $country, $email);
 
-    header("Location: ../pages/home.php");
+        header("Location: ../pages/home.php");
+    }
+
+    function unsetOrEmpty($var)
+    {
+        return (!isset($var) || $var = "" || is_null($var));
+    }
+?>

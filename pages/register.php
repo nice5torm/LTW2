@@ -1,6 +1,7 @@
 <?php
 	include_once('./header.php');
 ?>
+
 <section id="register">
     <h2>Register</h2>
     <form action="../actions/register_action.php" method="post">
@@ -29,6 +30,17 @@
         </div>
     </form>
 </section>
+
 <?php
+    if(isset($_SESSION['Register_Error']))
+    {
+        ?>
+
+        <p><?php echo $_SESSION['Register_Error'] ?></p>
+
+        <?php
+        unset($_SESSION['Register_Error']);
+    }
+
 	include('./footer.php');
 ?>

@@ -11,13 +11,13 @@ function createUser($username, $password, $age, $gender, $country, $email) {
 
     if ($stmt->fetch())
     {
-        echo 'That username is already taken.';
+        return 'That username is already taken.';
     }
     else
     {
         if (userExists($email))
         {
-            echo 'That email is already in use';
+            return 'That email is already in use';
         }
         else
         {
@@ -36,10 +36,10 @@ function createUser($username, $password, $age, $gender, $country, $email) {
         }
 
     }
-
 }
 
-    function logInUser($username, $password) {
+    function logInUser($username, $password)
+    {
         global $conn;
 
         $stmt = $conn->prepare
@@ -53,10 +53,7 @@ function createUser($username, $password, $age, $gender, $country, $email) {
         $passwordV = password_verify($password, $userInfo['password']);
 
         return $passwordV;
-
     }
-
-
 
  function editUser($username,$new_password,$new_email,$new_country)
  {

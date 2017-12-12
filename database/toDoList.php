@@ -1,14 +1,61 @@
 <?php
 include_once('../config/init.php');
 
+function getListMembership($user)
+{
+    global $conn;
+
+    $stmt = $conn->prepare
+    (
+        "SELECT * FROM toDoList JOIN members ON toDoList.idList = members.idList JOIN user ON user.username = members.user WHERE user = ?"
+    );
+
+    $stmt->execute(array($user));
+    $results = array();
+    while($row = $stmt->fetch())
+    {
+        array_push($results, $row);
+    }
+    return $results;
+}
+
+function getToDoList($idList)
+{
+    global $conn;
+
+    $stmt = $conn->prepare
+    (
+        "SELECT * FROM toDoList WHERE idList = ?"
+    );
+
+    $stmt->execute(array($idList));
+    return $stmt->fetch();
+}
+
+function getList($user)
+{
+    global $conn;
+
+    $stmt = $conn->prepare
+    (
+        "SELECT * FROM toDoList WHERE creator = ?"
+    );
+
+    $stmt->execute(array($user));
+    $results = array();
+    while($row = $stmt->fetch())
+    {
+        array_push($results, $row);
+    }
+    return $results;
+}
+
 function createList($creator, $title) {
     global $conn;
 
     $stmt = $conn->prepare
     (
-        'INSERT INTO toDoList 
-              (creator,title) 
-                VALUES (?,?)'
+        'INSERT INTO toDoList (creator,title) VALUES (?,?)'
     );
     $stmt->execute(array($creator, $title));
     $stmt = $conn->prepare
@@ -20,25 +67,31 @@ function createList($creator, $title) {
 
 }
 
-function deleteList($creator,$idList){
+function deleteList($creator,$idList)
+{
     global $conn;
 
     $stmt = $conn->prepare
     (
-        'SELECT * FROM toDoList 
-     		WHERE creator = ? AND idList=?'
+        'SELECT * FROM toDoList WHERE creator = ? AND idList=?'
     );
     $stmt->execute(array($creator, $idList));
 
-    if ( $stmt->fetch() ){
+    if ($stmt->fetch())
+    {
+        return "oi";
+
         $stmt = $conn->prepare
         (
-            'DELETE FROM toDoList 
-              WHERE idList=?'
+            'DELETE FROM toDoList WHERE idList=?'
         );
-        $result=$stmt->execute(array($idList));
+        $result = $stmt->execute(array($idList));
+        return ($result);
     }
-    return $result;
+    else
+        {
+        return 'Not Found';
+    }
 }
 
 function updateList($creator, $title, $idList){

@@ -1,8 +1,6 @@
 <?php
-    include_once('../database/user.php');
     include_once('../config/init.php');
-
-    global $conn;
+    include_once('../database/user.php');
 
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -17,3 +15,4 @@
     $_SESSION['login_result'] = $result;
 
     header("Location: ../pages/home.php");
+?>

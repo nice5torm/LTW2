@@ -2,6 +2,7 @@
 
     include_once("./header.php");
 ?>
+
 <section id="edit">
     <h2>Edit User</h2>
     <form action="../actions/editUser_action.php" method="post">
@@ -19,7 +20,18 @@
         </div>
     </form>
 </section>
+
 <?php
-    include_once("./footer.php");
+if(isset($_SESSION['Edit_Error']))
+{
+    ?>
+
+    <p><?php echo $_SESSION['Edit_Error'] ?></p>
+
+    <?php
+    unset($_SESSION['Edit_Error']);
+}
+
+include('./footer.php');
 ?>
 
