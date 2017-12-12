@@ -1,3 +1,6 @@
+PRAGMA foreign_keys = ON;
+
+
 CREATE TABLE user
 (
 	username TEXT NOT NULL UNIQUE PRIMARY KEY,
@@ -14,15 +17,15 @@ CREATE TABLE toDoList
 	idList INTEGER PRIMARY KEY AUTOINCREMENT,
 	creator INTEGER NOT NULL,
 	title TEXT NOT NULL, 
-	FOREIGN KEY (creator) REFERENCES user (username)
+	FOREIGN KEY (creator) REFERENCES user (username)ON DELETE CASCADE
 );
 
-INSERT INTO toDoList(idList, creator, title) VALUES (1,3,'list1'); 
-INSERT INTO toDoList(idList, creator, title) VALUES (2,5,'list2'); 
-INSERT INTO toDoList(idList, creator, title) VALUES (3,1,'list3'); 
-INSERT INTO toDoList(idList, creator, title) VALUES (4,2,'list4'); 
-INSERT INTO toDoList(idList, creator, title) VALUES (5,4,'list5'); 
-INSERT INTO toDoList(idList, creator, title) VALUES (6,2,'list6'); 
+INSERT INTO toDoList(idList, creator, title) VALUES (1,'user3','list1'); 
+INSERT INTO toDoList(idList, creator, title) VALUES (2,'user5','list2'); 
+INSERT INTO toDoList(idList, creator, title) VALUES (3,'user1','list3'); 
+INSERT INTO toDoList(idList, creator, title) VALUES (4,'user2','list4'); 
+INSERT INTO toDoList(idList, creator, title) VALUES (5,'user4','list5'); 
+INSERT INTO toDoList(idList, creator, title) VALUES (6,'user2','list6'); 
 
 CREATE TABLE itemList
 (
@@ -30,7 +33,7 @@ CREATE TABLE itemList
 	idList INTEGER NOT NULL,
 	item TEXT NOT NULL, 
 	done BOOLEAN NOT NULL DEFAULT FALSE,
-	FOREIGN KEY (idList) REFERENCES todoList(idList)
+	FOREIGN KEY (idList) REFERENCES todoList(idList)ON DELETE CASCADE
 );
 
 INSERT INTO itemList(idItem, idList, item, done) VALUES (1,1,'item1',1);
@@ -56,10 +59,17 @@ CREATE TABLE members
 	idList INTEGER NOT NULL,
 	user TEXT NOT NULL,
 	PRIMARY KEY (idList,user),
-	FOREIGN KEY (idList) REFERENCES todoList(idList),
-	FOREIGN KEY (user) REFERENCES user(username)
+	FOREIGN KEY (idList) REFERENCES todoList(idList)ON DELETE CASCADE,
+	FOREIGN KEY (user) REFERENCES user(username)ON DELETE CASCADE
 );
 
+INSERT INTO members (idList, user) VALUES (1,'user3');
+INSERT INTO members (idList, user) VALUES (2,'user5');
+INSERT INTO members (idList, user) VALUES (2,'user3');
+INSERT INTO members (idList, user) VALUES (3,'user1');
+INSERT INTO members (idList, user) VALUES (4,'user2');
+INSERT INTO members (idList, user) VALUES (5,'user4');
+INSERT INTO members (idList, user) VALUES (6,'user2');
 
 
 

@@ -50,12 +50,20 @@
                 }
             ?>
 
+            <form action="../actions/deleteItem_action.php" method="post">
+                <button type="Submit" name="submit" value="<?php echo $item[idItem] ?>" class="submit-button">Delete Item</button>
+            </form>
         </div>
 
         <?php
     }
 
     ?>
+
+        <form action="../actions/addItem_action.php" method="post">
+            <input type="text" name="item" placeholder="Enter item">
+            <button type="Submit" name="submit" value="<?php echo $_GET['submit']?>" class="submit-button">+</button>
+        </form>
 
         <form action="../actions/deleteList_action.php" method="post">
                 <button type="Submit" name="submit" value="<?php echo $_GET['submit']?>" class="submit-button">Delete List</button>

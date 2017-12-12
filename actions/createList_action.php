@@ -13,4 +13,4 @@ if(isset($result))
     $_SESSION['list']= $result;
 }
 
-header("Location: ../pages/home.php");
+header("Location: ../pages/todoLists.php");

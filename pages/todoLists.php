@@ -22,7 +22,7 @@
         {
             ?>
 
-            <form action="../pages/toDoList.php" method="get">
+            <form action="../pages/todoList.php" method="get">
                 <button type="Submit" name="submit" value="<?php echo $result['idList']?>" class="submit-button"><?php echo $result['title']?></button>
             </form>
 
@@ -41,12 +41,18 @@
         {
             ?>
 
-            <form action="../pages/toDoList.php" method="get">
+            <form action="../pages/todoList.php" method="get">
                 <button type="Submit" name="submit" value="<?php echo $result['idList']?>" class="submit-button"><?php echo $result['title']?></button>
             </form>
 
             <?php
         }
+        ?>
+        <form action="../actions/createList_action.php" method="post">
+            <input type="text" name="title" placeholder="Enter title">
+            <input type="Submit" name="submit" value="+" class="submit-button">
+        </form>
+        <?php
     }
     else
     {

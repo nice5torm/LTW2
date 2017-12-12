@@ -1,6 +1,6 @@
 <?php
     include_once('../config/init.php');
-    include_once('../database/toDoList.php');
+    include_once('../database/itemList.php');
 
     if(!isset($_POST['submit']) || !isset($_SESSION['username']) || $_POST['submit'] == "")
     {
@@ -8,10 +8,9 @@
         die();
     }
 
-    $idList = $_POST['submit'];
+    $idItem = $_POST['submit'];
 
-
-    $result = deleteList($_SESSION['username'], $idList);
+    $result = deleteItem($idItem);
 
 
     if($result)

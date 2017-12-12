@@ -58,12 +58,20 @@ function createList($creator, $title) {
         'INSERT INTO toDoList (creator,title) VALUES (?,?)'
     );
     $stmt->execute(array($creator, $title));
+
     $stmt = $conn->prepare
     (
         'SELECT idList FROM toDoList WHERE  creator=? AND title=?'
     );
     $stmt->execute(array($creator, $title));
-    return $stmt->fetch();
+    $row=$stmt->fetch();
+
+    $stmt = $conn->prepare
+    (
+        'INSERT INTO members (user,idList) VALUES (?,?)'
+    );
+    $stmt->execute(array($creator, $row));
+    return $row;
 
 }
 
@@ -79,11 +87,10 @@ function deleteList($creator,$idList)
 
     if ($stmt->fetch())
     {
-        return "oi";
 
         $stmt = $conn->prepare
         (
-            'DELETE FROM toDoList WHERE idList=?'
+            'DELETE FROM toDoList WHERE idList=? '
         );
         $result = $stmt->execute(array($idList));
         return ($result);

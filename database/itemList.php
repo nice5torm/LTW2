@@ -19,17 +19,10 @@ function getItemsFromList($idList)
     return $results;
 }
 
-function createItem($user, $idList, $item )
+function createItem( $idList, $item )
 {
     global $conn;
 
-    $stmt = $conn->prepare
-    (
-	'SELECT * FROM members WHERE  user=? AND idList=?'
-    );
-    $stmt->execute(array($user, $idList));
-
-    if($stmt->fetch()){
    	$stmt = $conn->prepare
     	(
         	'INSERT INTO itemList (idList,item) 
@@ -37,44 +30,28 @@ function createItem($user, $idList, $item )
    	);
   	$stmt->execute(array($idList, $item));
 
-    }
 }
 
-function deleteItem($user,$idList,$item){
+function deleteItem($item){
     global $conn;
 
     $stmt = $conn->prepare
     (
-	'SELECT * FROM members WHERE  user=? AND idList=?'
+        'DELETE FROM itemList
+                WHERE item=?'
     );
-    $stmt->execute(array($user, $idList));
+    $stmt->execute(array( $item));
 
-    if($stmt->fetch()){
-        $stmt = $conn->prepare
-        (
-            'DELETE FROM itemList
-              WHERE idList = ? AND item=?'
-        );
-        $stmt->execute(array($idList, $item));
-    }
 }
 
-function updateItem($user, $idList, $item){
+function updateItem( $idList, $item){
     global $conn;
 
-    $stmt = $conn->prepare
-    (
-	'SELECT * FROM members WHERE  user=? AND idList=?'
-    );
-    $stmt->execute(array($user, $idList));
-
-    if($stmt->fetch()){    
         $stmt = $conn->prepare
         (
             'UPDATE FROM itemList SET done=TRUE
               WHERE idList = ? AND item=?'
         );
         $stmt->execute(array($idList, $item));
-    }
 }
 

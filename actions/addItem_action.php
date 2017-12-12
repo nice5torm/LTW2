@@ -4,10 +4,9 @@ include_once('../config/init.php');
 
 global $conn;
 
-$username = $_SESSION['username'];
-$idList = $_SESSION['list'];
+$idList = $_POST['submit'];
 $item= $_POST['item'];
 
-createItem($username, $idList, $item);
+createItem($idList, $item);
 
-header("Location: ../pages/home.php");
+header("Location: ../pages/todoList.php?submit=".$_POST['submit']);

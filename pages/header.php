@@ -46,9 +46,10 @@
         else
         {
          ?>
-
-             <a class="logout" href="../actions/logout_action.php">Logout</a>
-             <a href="./editUser.php">Edit</a>
+            <a href="./home.php">Home</a>
+            <a href="./todoLists.php">Lists</a>
+            <a class="logout" href="../actions/logout_action.php">Logout</a>
+            <a href="./editUser.php">Edit</a>
 
          <?php
         }
