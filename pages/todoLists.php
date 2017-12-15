@@ -43,10 +43,19 @@ if(isset($_SESSION['username']))
         ?>
 
     </div>
-    <div class="createList">
+
+    <div class="container addList">
+        <h2>New list</h2>
         <form action="../actions/createList_action.php" method="post">
-            <input type="text" name="title" placeholder="Enter title">
-            <input type="Submit" name="submit" value="+" class="submit-button">
+            <div class="form-input">List:
+                <input type="text" name="title" placeholder="Enter title"> <br>
+            </div>
+            <div class="form-input">Category:
+                <input type="text" name="category" placeholder="Enter category"> <br>
+            </div>
+            <div>
+                <button type="Submit" name="list" value="addList" class="submit-button">Add</button>
+            </div>
         </form>
     </div>
 
