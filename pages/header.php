@@ -57,6 +57,8 @@
 
     </nav>
 
+<div class="page">
+
 <script type="text/javascript">
     function gotoPage(select){
         window.location = select.value;

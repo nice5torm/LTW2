@@ -1,5 +1,25 @@
-/*navegacao*/
-	 nav {
+    /*page*/
+
+    .page{
+        min-height: 80%;
+    }
+
+    /*footer*/
+
+    footer p {
+        float: right;
+        padding-right: 10px;
+        color: white;
+        font-family: Arial;
+    }
+
+    footer {
+        margin-top: 20px;
+    }
+
+    /*navegacao*/
+
+	 nav, footer {
         overflow: hidden;
         background-color: skyblue;
         font-family: Arial;
@@ -199,4 +219,10 @@
     .listControl {
         padding-top: 10px;
         padding-bottom: 10px;
+        margin-top: 0;
+        margin-bottom: 0;
+        border-bottom-style: solid;
+        border-width: 1px;
+        border-color: dodgerblue;
+
     }
