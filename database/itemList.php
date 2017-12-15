@@ -29,15 +29,21 @@ function createItem( $idList, $item, $dueDate, $assignedTo)
     );
     $row=$stmt->execute(array($idList));
 
-    if()
+    if(in_array($row,$assignedTo)){
 
-
-    $stmt = $conn->prepare
-    (
-        'INSERT INTO itemList (idList,item, dueDate, assignedTo) 
+        $stmt = $conn->prepare
+        (
+            'INSERT INTO itemList (idList,item, dueDate, assignedTo) 
                	  	VALUES (?, ?, ?, ?)'
-   	);
-  	$stmt->execute(array($idList, $item, $dueDate, $assignedTo));
+        );
+        $stmt->execute(array($idList, $item, $dueDate, $assignedTo));
+        $lastid = $conn->lastInsertId();
+        return $lastid;
+
+    }
+    else{
+        return -1;
+    }
 
 }
 
@@ -65,17 +71,28 @@ function updateItem($item, $done){
     return $result;
 }
 
-function editItem($dueDate,$assignedTo, $item)
+function editItem($dueDate,$assignedTo,$item, $idList)
 {
     global $conn;
 
     $stmt = $conn->prepare
     (
-        'UPDATE itemList SET dueDate=? AND assignedTo=? WHERE idItem=?'
+        'SELECT username FROM member WHERE idList=? '
     );
-    $result = $stmt->execute(array($dueDate,$assignedTo, $item));
+    $row=$stmt->execute(array($idList));
+    if(in_array($row,$assignedTo)){
 
-    return $result;
+        $stmt = $conn->prepare
+        (
+            'UPDATE itemList SET dueDate=? AND assignedTo=? WHERE idItem=?'
+        );
+        $result = $stmt->execute(array($dueDate,$assignedTo, $item));
+        return $result;
+
+    }
+    else{
+        return -1;
+    }
 
 
 }

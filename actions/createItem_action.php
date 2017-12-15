@@ -10,7 +10,7 @@
     $dueDate = $_POST['dueDate'];
     $assignedTo = $_POST['assignedTo'];
 
-    createItem($idList, $item, $dueDate, $assignedTo);
+    $result = createItem($idList, $item, $dueDate, $assignedTo);
 
     header("Location: ../pages/todoList.php?list=" . $_POST['list']);
 

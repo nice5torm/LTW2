@@ -66,13 +66,13 @@
     <div class="container addItem">
         <h2>New item</h2>
         <form action="../actions/createItem_action.php" method="post">
-            <div class="form-input">Name:
+            <div class="form-input"><b>Name:</b>
                 <input type="text" name="item" placeholder="Enter name"> <br>
             </div>
-            <div class="form-input">DueDate:
+            <div class="form-input"><b>DueDate:</b>
                 <input type="date" name="dueDate" placeholder="Enter due date"> <br>
             </div>
-            <div class="form-input">AssignedTo:
+            <div class="form-input"><b>AssignedTo:</b>
                 <input type="text" name="assignedTo" placeholder="Enter assigned to"> <br>
             </div>
             <div>
@@ -83,8 +83,16 @@
 
     <div class="container listControl">
         <div class="edit list">
-            <form action="./editList.php" method="post">
-                <button type="Submit" name="list" value="<?php echo $_GET['list']?>" class="submit-button">Edit List</button>
+            <form action="../actions/editList_action.php" method="post">
+                <div class="form-input"><b>Title:</b>
+                    <input type="text" name="title" placeholder="Enter title"> <br>
+                </div>
+                <div class="form-input"><b>Category:</b>
+                    <input type="text" name="category" placeholder="Enter category"> <br>
+                </div>
+                <div>
+                    <button type="Submit" name="list" value="<?php echo $_GET['list']?>" class="submit-button">Edit</button>
+                </div>
             </form>
         </div>
 

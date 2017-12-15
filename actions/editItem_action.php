@@ -11,12 +11,18 @@ if(unsetOrEmpty($_SESSION['username']) || !unsetOrEmpty($_POST['dueDate']) || !u
 else
 {
     $dueDate = $_POST['dueDate'];
-    $idList = $_POST['idList'];
+    $idList = $_POST['list'];
     $assignedTo = $_POST['assignedTo'];
+    $idItem= $_POST['idItem'];
 
-    editUser($dueDate, $assignedTo,$idList);
+    $result= editItem($dueDate, $assignedTo,$idItem, $idList);
 
-    header("Location: ../pages/home.php");
+    if($result==-1){
+        $_SESSION['Edit_Error'] = "assigned as to be a member";
+        header("Location: ../pages/editItem.php");
+    }
+
+    header("Location: ../pages/todoList.php?list=" . $_POST['list']);
 }
 
 function unsetOrEmpty($var)
