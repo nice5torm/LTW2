@@ -23,9 +23,18 @@ function createItem( $idList, $item, $dueDate, $assignedTo)
 {
     global $conn;
 
-   	$stmt = $conn->prepare
-    	(
-        	'INSERT INTO itemList (idList,item, dueDate, assignedTo) 
+    $stmt = $conn->prepare
+    (
+        'SELECT username FROM member WHERE idList=? '
+    );
+    $row=$stmt->execute(array($idList));
+
+    if()
+
+
+    $stmt = $conn->prepare
+    (
+        'INSERT INTO itemList (idList,item, dueDate, assignedTo) 
                	  	VALUES (?, ?, ?, ?)'
    	);
   	$stmt->execute(array($idList, $item, $dueDate, $assignedTo));
