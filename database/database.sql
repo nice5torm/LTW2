@@ -17,7 +17,7 @@ CREATE TABLE toDoList
 	idList INTEGER PRIMARY KEY AUTOINCREMENT,
 	creator INTEGER NOT NULL,
 	title TEXT NOT NULL,
-	category TEXT NOT NULL
+	category TEXT NOT NULL,
 	FOREIGN KEY (creator) REFERENCES user (username)ON DELETE CASCADE
 );
 INSERT INTO toDoList(idList, creator, title, category) VALUES (1,'user3','list1','category1');
@@ -33,9 +33,9 @@ CREATE TABLE itemList
 	idList INTEGER NOT NULL,
 	item TEXT NOT NULL, 
 	done BOOLEAN NOT NULL DEFAULT FALSE,
-	dueDate TEXT NOT NULL
-	assignedTo INTEGER NOT NULL
-
+	dueDate TEXT NOT NULL,
+	assignedTo INTEGER NOT NULL,
+	FOREIGN KEY (assignedTo) REFERENCES user(username),
 	FOREIGN KEY (idList) REFERENCES todoList(idList)ON DELETE CASCADE
 );
 
