@@ -24,6 +24,7 @@
 <div class="infoItem" >
     <p>Creator: <?php echo $toDoList['creator']; ?></p>
     <p>Title: <?php echo $toDoList['title']; ?></p>
+    <p>Category: <?php echo $toDoList['category']; ?></p>
 </div>
 
 <?php
@@ -49,6 +50,8 @@
                      <?php
                 }
             ?>
+            <p>Due Date: <?php echo $item['dueDate']; ?></p>
+            <p>Assigned to: <?php echo $item['assignedTo']; ?></p>
 
             <form action="../actions/deleteItem_action.php" method="post">
                 <button type="Submit" name="item" value="<?php echo $item[idItem] ?>" class="submit-button">Delete Item</button>

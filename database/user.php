@@ -1,6 +1,18 @@
 <?php
 include_once('../config/init.php');
 
+function getUser($username)
+{
+    global $conn;
+    $stmt = $conn->prepare
+    (
+        'SELECT * FROM user WHERE username = ?'
+    );
+    $stmt->execute(array($username));
+
+    return $stmt->fetch();
+}
+
 function createUser($username, $password, $age, $gender, $country, $email) {
     global $conn;
     $stmt = $conn->prepare
@@ -68,8 +80,6 @@ function createUser($username, $password, $age, $gender, $country, $email) {
     $stmt->execute(array( $hash_pass, $new_email,$new_country, $username));
     
  }
-
-
 
 function userExists($email){
 
