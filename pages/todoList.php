@@ -63,13 +63,19 @@
 
     ?>
 
-        <<a href="./editList.php">Edit List</a>
+    <div class="container listControl">
+        <div class="edit list">
+            <form action="./editList.php" method="post">
+                <button type="Submit" name="list" value="<?php echo $_GET['list']?>" class="submit-button">Edit List</button>
+            </form>
+        </div>
 
         <div class="delete list">
             <form action="../actions/deleteList_action.php" method="post">
                 <button type="Submit" name="list" value="<?php echo $_GET['list']?>" class="submit-button">Delete List</button>
             </form>
         </div>
+    </div>
 
 <?php
 

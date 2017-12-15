@@ -11,16 +11,7 @@
     $idList = $_POST['list'];
 
 
-    $result = deleteList($_SESSION['username'], $idList);
+    deleteList($_SESSION['username'], $idList);
+    header("Location: ../pages/todoLists.php");
 
-
-    if($result)
-    {
-        $headerStr = "Location: ../pages/todoLists.php";
-        header($headerStr);
-    }
-    else
-    {
-        header("Location: ../pages/todoLists.php");
-    }
 ?>
