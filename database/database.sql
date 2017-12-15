@@ -20,12 +20,12 @@ CREATE TABLE toDoList
 	category TEXT NOT NULL
 	FOREIGN KEY (creator) REFERENCES user (username)ON DELETE CASCADE
 );
-INSERT INTO toDoList(idList, creator, title) VALUES (1,'user3','list1');
-INSERT INTO toDoList(idList, creator, title) VALUES (2,'user5','list2');
-INSERT INTO toDoList(idList, creator, title) VALUES (3,'user1','list3');
-INSERT INTO toDoList(idList, creator, title) VALUES (4,'user2','list4');
-INSERT INTO toDoList(idList, creator, title) VALUES (5,'user4','list5');
-INSERT INTO toDoList(idList, creator, title) VALUES (6,'user2','list6');
+INSERT INTO toDoList(idList, creator, title, category) VALUES (1,'user3','list1','category1');
+INSERT INTO toDoList(idList, creator, title, category) VALUES (2,'user5','list2','category1');
+INSERT INTO toDoList(idList, creator, title, category) VALUES (3,'user1','list3','category1');
+INSERT INTO toDoList(idList, creator, title, category) VALUES (4,'user2','list4','category2');
+INSERT INTO toDoList(idList, creator, title, category) VALUES (5,'user4','list5','category2');
+INSERT INTO toDoList(idList, creator, title, category) VALUES (6,'user2','list6','category2');
 
 CREATE TABLE itemList
 (
