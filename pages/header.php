@@ -1,5 +1,6 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <title>Welcome</title>
 </head>
@@ -45,58 +46,10 @@
         else
         {
          ?>
+
             <a href="./home.php">Home</a>
-
-        <?php
-
-        include_once "../database/toDoList.php";
-
-        $results = getList($_SESSION['username']);
-
-        ?>
-        <div class="todoLists">
-            <select name="My Lists">
-            <?php
-
-            foreach($results as $result)
-            {
-                ?>
-
-                <div class="List">
-                    <form action="../pages/todoList.php" method="get">
-                        <button type="Submit" name="list" value="<?php echo $result['idList']?>" class="submit-button"><?php echo $result['title']?></button>
-                    </form>
-                </div>
-                <?php
-            }
-            ?>
-            </select>
-            <select name="All Lists" onchange="gotoPage()">
-
-            <?php
-
-                $results = getListMembership($_SESSION['username']);
-
-                foreach($results as $result)
-                {
-                    ?>
-                    <option value="../pages/todoList.php/<?php echo $result['idList']?>">
-                        <?php echo $result['title']?>
-                        <form action="../pages/todoList.php" method="get">
-                            <button type="Submit" name="list" value="<?php echo $result['idList']?>" class="submit-button"><?php echo $result['title']?></button>
-                        </form>
-                    </option>
-
-
-                    <?php
-                }
-                ?>
-            </select>
-
-        </div>
-
-            <a class="logout" href="../actions/logout_action.php">Logout</a>
             <a href="./editUser.php">Edit</a>
+            <a class="logout" href="../actions/logout_action.php">Logout</a>
 
          <?php
         }
