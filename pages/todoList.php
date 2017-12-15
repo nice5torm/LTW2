@@ -54,7 +54,7 @@
             ?>
 
             <form action="../actions/deleteItem_action.php" method="post">
-                <button type="Submit" name="item" value="<?php echo $item[idItem] ?>" class="submit-button"><i class="fa fa-times" aria-hidden="true"></i></button>
+                <button type="Submit" name="item" value="<?php echo $item['idItem'] ?>" class="submit-button"><i class="fa fa-times" aria-hidden="true"></i></button>
             </form>
         </div>
 
