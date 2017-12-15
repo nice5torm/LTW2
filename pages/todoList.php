@@ -21,10 +21,10 @@
     $toDoListItems = getItemsFromList($_GET['list']);
 ?>
 
-<div class="infoItem" >
-    <p>Creator: <?php echo $toDoList['creator']; ?></p>
-    <p>Title: <?php echo $toDoList['title']; ?></p>
-    <p>Category: <?php echo $toDoList['category']; ?></p>
+<div class="infoItem container" >
+    <p><b>Creator:</b> <?php echo $toDoList['creator']; ?></p>
+    <p><b>Title:</b> <?php echo $toDoList['title']; ?></p>
+    <p><b>Category:</b> <?php echo $toDoList['category']; ?></p>
 </div>
 
 <?php
@@ -33,28 +33,28 @@
     {
         ?>
 
-        <div class="Item">
-            <p>Item: <?php echo $item['item']; ?></p>
+        <div class="Item container">
+            <p><b>Item:</b> <?php echo $item['item']; ?></p>
+            <p><b>Due Date:</b> <?php echo $item['dueDate']; ?></p>
+            <p><b>Assigned to:</b> <?php echo $item['assignedTo']; ?></p>
 
             <?php
-                if($item['done'])
-                {
-                    ?>
-                    <input type="checkbox" name="checkbox" value="<?php echo $item['idItem']; ?>" checked>Done<br>
-                    <?php
-                }
-                else
-                {
-                     ?>
-                    <input type="checkbox" name="checkbox" value="<?php echo $item['idItem']; ?>">Done<br>
-                     <?php
-                }
+            if($item['done'])
+            {
+                ?>
+                <input type="checkbox" name="checkbox" value="<?php echo $item['idItem']; ?>" checked>Done<br>
+                <?php
+            }
+            else
+            {
+                ?>
+                <input type="checkbox" name="checkbox" value="<?php echo $item['idItem']; ?>">Done<br>
+                <?php
+            }
             ?>
-            <p>Due Date: <?php echo $item['dueDate']; ?></p>
-            <p>Assigned to: <?php echo $item['assignedTo']; ?></p>
 
             <form action="../actions/deleteItem_action.php" method="post">
-                <button type="Submit" name="item" value="<?php echo $item[idItem] ?>" class="submit-button">Delete Item</button>
+                <button type="Submit" name="item" value="<?php echo $item[idItem] ?>" class="submit-button"><i class="fa fa-times" aria-hidden="true"></i></button>
             </form>
         </div>
 
@@ -62,19 +62,14 @@
     }
 
     ?>
-        <div class="addItem">
-            <form action="../actions/addItem_action.php" method="post">
-                <input type="text" name="item" placeholder="Enter item">
-                <button type="Submit" name="list" value="<?php echo $_GET['list']?>" class="submit-button">+</button>
-            </form>
-        </div>
+
+        <<a href="./editList.php">Edit List</a>
 
         <div class="delete list">
             <form action="../actions/deleteList_action.php" method="post">
                 <button type="Submit" name="list" value="<?php echo $_GET['list']?>" class="submit-button">Delete List</button>
             </form>
         </div>
-
 
 <?php
 

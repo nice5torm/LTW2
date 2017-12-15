@@ -1,6 +1,6 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <script src="https://use.fontawesome.com/c851913b6d.js"></script>
     <link rel="stylesheet" href="../css/style.css">
     <title>Welcome</title>
 </head>
