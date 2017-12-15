@@ -63,6 +63,24 @@
 
     ?>
 
+    <div class="container addItem">
+        <h2>New item</h2>
+        <form action="../actions/createItem_action.php" method="post">
+            <div class="form-input">Name:
+                <input type="text" name="item" placeholder="Enter name"> <br>
+            </div>
+            <div class="form-input">DueDate:
+                <input type="date" name="dueDate" placeholder="Enter due date"> <br>
+            </div>
+            <div class="form-input">AssignedTo:
+                <input type="text" name="assignedTo" placeholder="Enter assigned to"> <br>
+            </div>
+            <div>
+                <button type="Submit" name="list" value="<?php echo $_GET['list']?>" class="submit-button">Add</button>
+            </div>
+        </form>
+    </div>
+
     <div class="container listControl">
         <div class="edit list">
             <form action="./editList.php" method="post">

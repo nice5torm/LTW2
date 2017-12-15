@@ -1,14 +1,16 @@
 <?php
-include_once('../database/itemList.php');
-include_once('../config/init.php');
 
-global $conn;
+    include_once('../database/itemList.php');
+    include_once('../config/init.php');
 
-$idList = $_POST['list'];
-$item= $_POST['item'];
-$dueDate=$_POST['dueDate'];
-$assignedTo=$_POST['assignedTo'];
+    global $conn;
 
-createItem($idList, $item, $dueDate, $assignedTo);
+    $idList = $_POST['list'];
+    $item= $_POST['item'];
+    $dueDate=$_POST['dueDate'];
+    $assignedTo=$_POST['assignedTo'];
 
-header("Location: ../pages/todoList.php?list=".$_POST['list']);
+    createItem($idList, $item, $dueDate, $assignedTo);
+
+    header("Location: ../pages/todoList.php?list=".$_POST['list']);
+?>
