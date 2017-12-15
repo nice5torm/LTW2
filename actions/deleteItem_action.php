@@ -2,7 +2,7 @@
     include_once('../config/init.php');
     include_once('../database/itemList.php');
 
-    if(!isset($_POST['item']) || !isset($_SESSION['username']) || $_POST['item'] == "")
+    if(!isset($_POST['item']) || !isset($_SESSION['username']))
     {
         header("Location: ../pages/home.php");
         die();
