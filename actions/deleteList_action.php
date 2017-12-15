@@ -12,6 +12,6 @@
 
 
     deleteList($_SESSION['username'], $idList);
-    header("Location: ../pages/todoLists.php");
+    header("Location: ../pages/home.php");
 
 ?>
