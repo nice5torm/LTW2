@@ -10,16 +10,7 @@
 
     $idItem = $_POST['item'];
 
-    $result = deleteItem($idItem);
+    deleteItem($idItem);
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
 
-
-    if($result)
-    {
-        $headerStr = "Location: ../pages/todoLists.php";
-        header($headerStr);
-    }
-    else
-    {
-        header("Location: ../pages/todoLists.php");
-    }
 ?>
