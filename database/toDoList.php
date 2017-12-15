@@ -50,14 +50,14 @@ function getList($user)
     return $results;
 }
 
-function createList($creator, $title) {
+function createList($creator, $title, $category) {
     global $conn;
 
     $stmt = $conn->prepare
     (
-        'INSERT INTO toDoList (creator,title) VALUES (?,?)'
+        'INSERT INTO toDoList (creator,title,category) VALUES (?,?,?)'
     );
-    $stmt->execute(array($creator, $title));
+    $stmt->execute(array($creator, $title,$category));
     $lastid = $conn->lastInsertId();
 
     $stmt = $conn->prepare
@@ -101,7 +101,7 @@ function deleteList($creator,$idList)
     }
 }
 
-function updateList($creator, $title, $idList){
+function updateList($creator, $title, $idList, $category){
     global $conn;
 
     $stmt = $conn->prepare
@@ -113,9 +113,9 @@ function updateList($creator, $title, $idList){
 
     $stmt = $conn->prepare
     (
-        'UPDATE FROM toDoList SET title=? WHERE idList=?'
+        'UPDATE FROM toDoList SET title=? WHERE idList=? AND category=?'
     );
-    $stmt->execute(array( $title, $idList));
+    $stmt->execute(array( $title, $idList, $category));
 
 
 

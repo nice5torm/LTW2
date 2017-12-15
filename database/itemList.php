@@ -19,16 +19,16 @@ function getItemsFromList($idList)
     return $results;
 }
 
-function createItem( $idList, $item )
+function createItem( $idList, $item, $dueDate, $assignedTo)
 {
     global $conn;
 
    	$stmt = $conn->prepare
     	(
-        	'INSERT INTO itemList (idList,item) 
-               	  	VALUES (?, ?)'
+        	'INSERT INTO itemList (idList,item, dueDate, assignedTo) 
+               	  	VALUES (?, ?, ?, ?)'
    	);
-  	$stmt->execute(array($idList, $item));
+  	$stmt->execute(array($idList, $item, $dueDate, $assignedTo));
 
 }
 
@@ -47,12 +47,27 @@ function deleteItem($item){
 function updateItem($item, $done){
     global $conn;
 
-        $stmt = $conn->prepare
-        (
-            'UPDATE itemList SET done=? WHERE idItem=?'
-        );
-        $result = $stmt->execute(array($done, $item));
+    $stmt = $conn->prepare
+    (
+       'UPDATE itemList SET done=? WHERE idItem=?'
+    );
+    $result = $stmt->execute(array($done, $item));
 
-        return $result;
+    return $result;
+}
+
+function editItem($item, $dueDate, $assignedTo)
+{
+    global $conn;
+
+    $stmt = $conn->prepare
+    (
+        'UPDATE itemList SET dueDate=? AND assignedTo=? WHERE idItem=?'
+    );
+    $result = $stmt->execute(array($dueDate,$assignedTo, $item));
+
+    return $result;
+
+
 }
 
