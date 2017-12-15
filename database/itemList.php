@@ -56,7 +56,7 @@ function updateItem($item, $done){
     return $result;
 }
 
-function editItem($item, $dueDate, $assignedTo)
+function editItem($dueDate,$assignedTo, $item)
 {
     global $conn;
 

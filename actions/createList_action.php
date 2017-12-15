@@ -15,3 +15,7 @@ if(isset($result))
 }
 
 header("Location: ../pages/home.php");
+
+
+
+?>

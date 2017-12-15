@@ -7,7 +7,7 @@ if(isset($_SESSION['username']))
     $results = getList($_SESSION['username']);
 
     ?>
-    <div class="todoLists">
+    <div class="container todoLists">
         <h2>To Do Lists that I created</h2>
 
         <?php
@@ -34,10 +34,11 @@ if(isset($_SESSION['username']))
         foreach($results as $result)
         {
             ?>
-            <form action="../pages/todoList.php" method="get">
-                <button type="Submit" name="list" value="<?php echo $result['idList']?>" class="submit-button"><?php echo $result['title']?></button>
-            </form>
-
+            <div class="List2">
+                <form action="../pages/todoList.php" method="get">
+                    <button type="Submit" name="list" value="<?php echo $result['idList']?>" class="submit-button"><?php echo $result['title']?></button>
+                </form>
+            </div>
             <?php
         }
         ?>

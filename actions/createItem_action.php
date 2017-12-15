@@ -6,11 +6,12 @@
     global $conn;
 
     $idList = $_POST['list'];
-    $item= $_POST['item'];
-    $dueDate=$_POST['dueDate'];
-    $assignedTo=$_POST['assignedTo'];
+    $item = $_POST['item'];
+    $dueDate = $_POST['dueDate'];
+    $assignedTo = $_POST['assignedTo'];
 
     createItem($idList, $item, $dueDate, $assignedTo);
 
-    header("Location: ../pages/todoList.php?list=".$_POST['list']);
+    header("Location: ../pages/todoList.php?list=" . $_POST['list']);
+
 ?>

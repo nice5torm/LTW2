@@ -2,7 +2,7 @@
 include_once('../config/init.php');
 include_once('../database/itemList.php');
 
-if(unsetOrEmpty($_SESSION['username']) || !unsetOrEmpty($_POST['title']) || !unsetOrEmpty($_POST['assignedTo']))
+if(unsetOrEmpty($_SESSION['username']) || !unsetOrEmpty($_POST['dueDate']) || !unsetOrEmpty($_POST['assignedTo']))
 {
     $_SESSION['Edit_Error'] = "Some field is unset";
 
@@ -10,12 +10,11 @@ if(unsetOrEmpty($_SESSION['username']) || !unsetOrEmpty($_POST['title']) || !uns
 }
 else
 {
-    $username=$_SESSION['username'];
-    $title = $_POST['title'];
+    $dueDate = $_POST['dueDate'];
     $idList = $_POST['idList'];
     $assignedTo = $_POST['assignedTo'];
 
-    editUser($username,$title, $idList, $assignedTo);
+    editUser($dueDate, $assignedTo,$idList);
 
     header("Location: ../pages/home.php");
 }
