@@ -22,5 +22,13 @@ $(document).ready()
             ;
         }
     );
+
+    $("select").click()
+    (
+        function(event)
+        {
+           //dont know exactly what to do here xb
+        }
+    )
 }
 
